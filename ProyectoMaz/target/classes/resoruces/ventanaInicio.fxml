@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.equipo.mazmorra.ControladorInicio"
+      spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Configuración del Personaje"/>
+    
+    <HBox spacing="5">
+        <Label text="Salud:"/>
+        <TextField fx:id="txtSalud" promptText="Ej: 100"/>
+    </HBox>
+    <HBox spacing="5">
+        <Label text="Fuerza:"/>
+        <TextField fx:id="txtFuerza" promptText="Ej: 20"/>
+    </HBox>
+    <HBox spacing="5">
+        <Label text="Defensa:"/>
+        <TextField fx:id="txtDefensa" promptText="Ej: 10"/>
+    </HBox>
+    <HBox spacing="5">
+        <Label text="Velocidad:"/>
+        <TextField fx:id="txtVelocidad" promptText="Ej: 3"/>
+    </HBox>
+
+    <Button text="Iniciar juego" onAction="#handleIniciarJuego"/>
+</VBox>
