@@ -1,53 +1,58 @@
 package com.ignaciomanuel.mazmorra;
 
+import java.util.List;
+
+import com.ignaciomanuel.*;.mazmorra.logica.actores.Actor;
+import com.ignaciomanuel.*;.mazmorra.logica.actores.Enemigo;
+import com.ignaciomanuel.*;.mazmorra.logica.actores.Protagonista;
+
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ControladorJuego {
 
-    @FXML
-    private Canvas canvas;
+    @FXML private Canvas canvas;
+    @FXML private Label lblTituloEstado;
+    @FXML private ProgressBar pbSalud;
+    @FXML private Label lblTurnoDetail;
+    @FXML private VBox vboxEnemigos;
+    @FXML private TextArea areaEventos;
 
-    @FXML
-    private Label lblSalud;
+    public Canvas getCanvas() { return canvas; }
+    public TextArea getAreaEventos() { return areaEventos; }
 
-    @FXML
-    private Label lblTurno;
+    /**
+     * Refresca el panel derecho.
+     */
+    public void actualizarPanelDerecho(Protagonista p, List<Actor> actores, int turnoCount) {
+        // Título con nombre
+        lblTituloEstado.setText(ControladorInicio.getNombre());
 
-    @FXML
-    private Label lblEnemigos;
+        // Salud
+        double pct = (double)p.getSalud() / p.getMaxSalud();
+        pbSalud.setProgress(pct < 0 ? 0 : pct);
 
-    @FXML
-    private VBox panelEnemigos;
+        // Turno
+        lblTurnoDetail.setText(String.valueOf(turnoCount));
 
-    @FXML
-    private TextArea areaEventos;
-
-    // Getters públicos para que Principal acceda a los elementos si los necesita
-    public Canvas getCanvas() {
-        return canvas;
-    }
-
-    public Label getLblSalud() {
-        return lblSalud;
-    }
-
-    public Label getLblTurno() {
-        return lblTurno;
-    }
-
-    public Label getLblEnemigos() {
-        return lblEnemigos;
-    }
-
-    public VBox getPanelEnemigos() {
-        return panelEnemigos;
-    }
-
-    public TextArea getAreaEventos() {
-        return areaEventos;
+        // Enemigos
+        vboxEnemigos.getChildren().clear();
+        int idx = 1;
+        for (Actor a : actores) {
+            if (a instanceof Enemigo) {
+                Enemigo e = (Enemigo)a;
+                double ep = (double)e.getSalud() / e.getMaxSalud();
+                ProgressBar bar = new ProgressBar(ep < 0 ? 0 : ep);
+                bar.setPrefWidth(120);
+                Label lab = new Label("Enemigo #" + (idx++));
+                HBox row = new HBox(6, lab, bar);
+                vboxEnemigos.getChildren().add(row);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.ignaciomanuel.mazmorra.Principal;
 import com.ignaciomanuel.mazmorra.logica.Celda;
 
 public class Enemigo extends Actor {
+    private final int maxSalud;
     private int salud;
     private int fuerza;
     private int defensa;
@@ -12,6 +13,7 @@ public class Enemigo extends Actor {
 
     public Enemigo(Celda celda, int salud, int fuerza, int defensa, int velocidad, int percepcion) {
         super(celda);
+        this.maxSalud   = salud;
         this.salud      = salud;
         this.fuerza     = fuerza;
         this.defensa    = defensa;
@@ -19,66 +21,61 @@ public class Enemigo extends Actor {
         this.percepcion = percepcion;
     }
 
-    // Getters y setters...
+    // Getters
     public int getSalud()      { return salud; }
-    public void setSalud(int s){ this.salud = s; }
     public int getFuerza()     { return fuerza; }
-    public void setFuerza(int f){ this.fuerza = f; }
     public int getDefensa()    { return defensa; }
-    public void setDefensa(int d){ this.defensa = d; }
     public int getVelocidad()  { return velocidad; }
-    public void setVelocidad(int v){ this.velocidad = v; }
     public int getPercepcion() { return percepcion; }
+    public int getMaxSalud()   { return maxSalud; }
+
+    // Setters
+    public void setSalud(int s)     { this.salud = s; }
+    public void setFuerza(int f)    { this.fuerza = f; }
+    public void setDefensa(int d)   { this.defensa = d; }
+    public void setVelocidad(int v) { this.velocidad = v; }
     public void setPercepcion(int p){ this.percepcion = p; }
 
-    // Recibe daño
-    public void recibirDano(int dano) {
-        this.salud -= dano;
-        Principal.registrarEvento("💢 Enemigo recibió " + dano + " de daño. Salud restante: " + salud);
+    /** Recibe daño y registra evento */
+    public void recibirdaño(int daño) {
+        this.salud -= daño;
+        Principal.registrarEvento("💢 Enemigo recibió " + daño + " de daño. Salud restante: " + salud);
     }
 
-    // Ataca al protagonista
+    /** Ataca al protagonista */
     public void atacar(Protagonista p) {
         int reduccion = p.getDefensa() / 2;
-        int dano = this.fuerza - reduccion;
-        if (dano < 1) dano = 1;
+        int daño = this.fuerza - reduccion;
+        if (daño < 1) daño = 1;
 
-        p.recibirDano(dano);
-        Principal.registrarEvento("⚔️ Enemigo ataca y causa " + dano + " de daño.");
-
+        p.recibirdaño(daño);
+        Principal.registrarEvento("⚔️ Enemigo ataca por " + daño + " de daño.");
         if (p.getSalud() <= 0) {
             Principal.gameOver();
         }
     }
 
-    /** 
-     * Movimiento con combate: 
-     * si la celda está libre, se mueve; 
-     * si hay un protagonista, ataca.
-     */
+    /** Movimiento con combate */
     @Override
     public void mover(int dx, int dy) {
         int nx = celda.getX() + dx;
         int ny = celda.getY() + dy;
         Celda destino = celda.getMapa().getCelda(nx, ny);
-        if (destino != null && destino.getTipo().esTransitable()) {
-            Actor ocupante = destino.getActor();
-            if (ocupante == null) {
-                // moverse
+        if (destino == null) return;
+
+        if (destino.getTipo().esTransitable()) {
+            Actor occ = destino.getActor();
+            if (occ == null) {
                 celda.setActor(null);
                 destino.setActor(this);
                 this.celda = destino;
-            } else if (ocupante instanceof Protagonista) {
-                // atacar al héroe
-                atacar((Protagonista) ocupante);
+            } else if (occ instanceof Protagonista) {
+                atacar((Protagonista) occ);
             }
         }
     }
 
-    /**
-     * Estrategia simple: se acerca un paso al protagonista
-     * o ataca si queda adyacente.
-     */
+    /** Estrategia simple: acercarse/atacar */
     public void moverInteligente(Protagonista p) {
         int dx = Integer.compare(p.getCelda().getX(), celda.getX());
         int dy = Integer.compare(p.getCelda().getY(), celda.getY());

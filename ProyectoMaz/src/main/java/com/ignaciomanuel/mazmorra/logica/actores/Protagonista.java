@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class Protagonista extends Actor {
+    private final int maxSalud;   // Salud inicial máxima
     private int salud;
     private int fuerza;
     private int defensa;
@@ -16,10 +17,11 @@ public class Protagonista extends Actor {
 
     public Protagonista(Celda celda, int salud, int fuerza, int defensa, int velocidad) {
         super(celda);
-        this.salud     = salud;
-        this.fuerza    = fuerza;
-        this.defensa   = defensa;
-        this.velocidad = velocidad;
+        this.maxSalud = salud;
+        this.salud    = salud;
+        this.fuerza   = fuerza;
+        this.defensa  = defensa;
+        this.velocidad= velocidad;
     }
 
     // Getters
@@ -27,43 +29,37 @@ public class Protagonista extends Actor {
     public int getFuerza()    { return fuerza; }
     public int getDefensa()   { return defensa; }
     public int getVelocidad() { return velocidad; }
+    public int getMaxSalud()  { return maxSalud; }
 
     // Setters
-    public void setSalud(int salud)         { this.salud = salud; }
-    public void setFuerza(int fuerza)       { this.fuerza = fuerza; }
-    public void setDefensa(int defensa)     { this.defensa = defensa; }
-    public void setVelocidad(int velocidad) { this.velocidad = velocidad; }
+    public void setSalud(int salud)       { this.salud = salud; }
+    public void setFuerza(int fuerza)     { this.fuerza = fuerza; }
+    public void setDefensa(int defensa)   { this.defensa = defensa; }
+    public void setVelocidad(int velocidad){ this.velocidad = velocidad; }
 
-    // Recibir daño y actualizar UI
-    public void recibirDano(int dano) {
-        this.salud -= dano;
-        Principal.registrarEvento("💢 Protagonista recibió " + dano + " de daño. Salud restante: " + salud);
-        Principal.getInstancia()
-                 .getControlador()
-                 .getLblSalud()
-                 .setText(String.valueOf(this.salud));
+    /** Recibe daño y registra el evento. Panel derecho se actualiza desde Principal. */
+    public void recibirdaño(int daño) {
+        this.salud -= daño;
+        Principal.registrarEvento("💢 Protagonista recibió " + daño + " de daño. Salud restante: " + salud);
     }
 
-    // Atacar a un enemigo
+    /** Ataca a un enemigo reduciendo su salud */
     public void atacar(Enemigo enemigo) {
         int reduccion = enemigo.getDefensa() / 2;
-        int dano = this.fuerza - reduccion;
-        if (dano < 1) dano = 1;
+        int daño = this.fuerza - reduccion;
+        if (daño < 1) daño = 1;
 
-        enemigo.recibirDano(dano);
-        Principal.registrarEvento("🗡️ Atacas al enemigo por " + dano + " puntos de daño.");
+        enemigo.recibirdaño(daño);
+        Principal.registrarEvento("🗡️ Protagonista ataca por " + daño + " de daño.");
         if (enemigo.getSalud() <= 0) {
             Principal.registrarEvento("🏆 ¡Enemigo derrotado!");
-            Celda celdaEnemigo = enemigo.getCelda();
-            celdaEnemigo.setActor(null);
+            Celda c = enemigo.getCelda();
+            c.setActor(null);
             Principal.eliminarActor(enemigo);
         }
     }
 
-    /**
-     * Movimiento con combate y victoria.
-     * Si pisa la salida tras eliminar enemigos, muestra alerta de victoria.
-     */
+    /** Movimiento con combate y chequeo de salida */
     @Override
     public void mover(int dx, int dy) {
         int nx = celda.getX() + dx;
@@ -71,29 +67,34 @@ public class Protagonista extends Actor {
         Celda destino = celda.getMapa().getCelda(nx, ny);
         if (destino == null) return;
 
-        // Meta (salida)
+        // Si pisa la salida
         if (destino.getTipo() == TipoCelda.SALIDA) {
-                Principal.registrarEvento("🏁 ¡Has alcanzado la salida! Victoria.");
+            boolean quedan = Principal.getActores().stream()
+                              .anyMatch(a -> a instanceof Enemigo);
+            if (quedan) {
+                Principal.registrarEvento("🔒 Elimina todos los enemigos antes de usar la salida.");
+            } else {
+                Principal.registrarEvento("🎉 ¡Has ganado la partida!");
                 Platform.runLater(() -> {
                     Alert alerta = new Alert(AlertType.INFORMATION);
                     alerta.setTitle("¡Victoria!");
                     alerta.setHeaderText(null);
-                    alerta.setContentText("🎉 Enhorabuena, has ganado la partida.");
+                    alerta.setContentText("Enhorabuena, has ganado.");
                     alerta.showAndWait();
                     Platform.exit();
                 });
+            }
             return;
         }
 
-        // Suelo transitable o combate
         if (destino.getTipo().esTransitable()) {
-            Actor ocupante = destino.getActor();
-            if (ocupante == null) {
+            Actor occ = destino.getActor();
+            if (occ == null) {
                 celda.setActor(null);
                 destino.setActor(this);
                 this.celda = destino;
-            } else if (ocupante instanceof Enemigo) {
-                atacar((Enemigo) ocupante);
+            } else if (occ instanceof Enemigo) {
+                atacar((Enemigo) occ);
             }
         }
     }
