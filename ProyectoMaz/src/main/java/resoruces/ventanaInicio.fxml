@@ -1,34 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.equipo.mazmorra.ControladorInicio"
-      spacing="10" alignment="CENTER">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.equipo.mazmorra.ControladorInicio"
+            prefWidth="600" prefHeight="320">
 
-    <Label text="Configuración del Personaje"/>
-    
-    <HBox spacing="5">
-        <Label text="Salud:"/>
-        <TextField fx:id="txtSalud" promptText="Ej: 100"/>
-    </HBox>
-    <HBox spacing="5">
-        <Label text="Fuerza:"/>
-        <TextField fx:id="txtFuerza" promptText="Ej: 20"/>
-    </HBox>
-    <HBox spacing="5">
-        <Label text="Defensa:"/>
-        <TextField fx:id="txtDefensa" promptText="Ej: 10"/>
-    </HBox>
-    <HBox spacing="5">
-        <Label text="Velocidad:"/>
-        <TextField fx:id="txtVelocidad" promptText="Ej: 3"/>
-    </HBox>
+    <center>
+        <GridPane hgap="10" vgap="15" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="20" right="40" bottom="20" left="40"/>
+            </padding>
 
-    <Button text="Iniciar juego" onAction="#handleIniciarJuego"/>
-</VBox>
+            <!-- Título -->
+            <Label text="⚔️ Configura tu Héroe"
+                   style="-fx-font-size:18px; -fx-font-weight:bold;"
+                   GridPane.columnSpan="2"
+                   GridPane.halignment="CENTER"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="0"/>
+
+            <!-- Nombre -->
+            <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombre" promptText="Ej: Aragorn"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <!-- Salud -->
+            <Label text="Salud:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtSalud" promptText="Ej: 100"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Fuerza -->
+            <Label text="Fuerza:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtFuerza" promptText="Ej: 20"
+                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <!-- Defensa -->
+            <Label text="Defensa:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDefensa" promptText="Ej: 10"
+                       GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <!-- Velocidad -->
+            <Label text="Velocidad:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtVelocidad" promptText="Ej: 3"
+                       GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <!-- Botón -->
+            <HBox spacing="10"
+                  GridPane.rowIndex="6"
+                  GridPane.columnIndex="0"
+                  GridPane.columnSpan="2"
+                  alignment="CENTER">
+                <Button text="🚀 Iniciar juego"
+                        onAction="#handleIniciarJuego"
+                        style="-fx-font-size:14px; -fx-padding:6 20;"/>
+            </HBox>
+        </GridPane>
+    </center>
+
+    <right>
+        <VBox alignment="CENTER" prefWidth="200">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <ImageView fitWidth="180" fitHeight="180" preserveRatio="true">
+                <image>
+                    <Image url="@protagonista.png"/>
+                </image>
+            </ImageView>
+        </VBox>
+    </right>
+
+</BorderPane>

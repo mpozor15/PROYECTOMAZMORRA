@@ -1,39 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.equipo.mazmorra.ControladorJuego">
+            fx:controller="com.equipo.mazmorra.ControladorJuego"
+            prefWidth="800" prefHeight="600">
 
+    <!-- Lienzo central -->
     <center>
         <Canvas fx:id="canvas"
-                width="640" height="480"
-                focusTraversable="true" />
+                focusTraversable="true"/>
     </center>
 
+    <!-- Panel derecho -->
     <right>
-        <VBox spacing="10">
+        <VBox spacing="20">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Salud:" />
-            <Label fx:id="lblSalud" text="100" />
-            <Label text="Turno:" />
-            <Label fx:id="lblTurno" text="0" />
-            <Label text="Enemigos restantes:" />
-            <Label fx:id="lblEnemigos" text="0" />
-            <Label text="Enemigos:" />
-            <VBox fx:id="panelEnemigos" spacing="5"/>
+
+            <!-- TITULO DINÁMICO -->
+            <Label fx:id="lblTituloEstado"
+                   text="Estado del jugador"
+                   style="-fx-font-weight:bold; -fx-font-size:14px;"/>
+
+            <!-- Barra de salud y turno -->
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Salud:"/>
+                <ProgressBar fx:id="pbSalud" prefWidth="150" progress="1.0"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Turno:"/>
+                <Label fx:id="lblTurnoDetail" text="0"/>
+            </HBox>
+
+            <!-- Enemigos activos -->
+            <Label text="Enemigos activos" style="-fx-font-weight:bold;"/>
+            <VBox fx:id="vboxEnemigos" spacing="6"/>
         </VBox>
     </right>
 
     <bottom>
-        <TextArea fx:id="areaEventos" prefRowCount="4" editable="false" wrapText="true"/>
+        <TextArea fx:id="areaEventos"
+                  prefRowCount="4"
+                  editable="false"
+                  wrapText="true"/>
     </bottom>
 
+    <padding>
+        <Insets top="0" right="10" bottom="10" left="10"/>
+    </padding>
 </BorderPane>
