@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.equipo.mazmorra.ControladorInicio"
+            fx:controller="com.ignaciomanuel.mazmorra.ControladorInicio"
             prefWidth="600" prefHeight="320">
 
     <center>
