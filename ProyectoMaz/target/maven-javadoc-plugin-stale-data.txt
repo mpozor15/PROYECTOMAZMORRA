@@ -1,0 +1,51 @@
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/pozor/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13.jar;C:/Users/pozor/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13.jar;C:/Users/pozor/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13.jar;C:/Users/pozor/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13.jar'
+--module-path
+'C:/Users/pozor/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13-win.jar;C:/Users/pozor/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13-win.jar;C:/Users/pozor/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar;C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/target/classes;C:/Users/pozor/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-win.jar'
+--patch-module
+com.ignaciomanuel='C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/src/main/java'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+--module-source-path
+'C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/target/site/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/target/site/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'ignaciomanuel 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'ignaciomanuel 1.0-SNAPSHOT API'
+com.ignaciomanuel.mazmorra
+com.ignaciomanuel.mazmorra.logica
+'C:/Users/pozor/OneDrive/Escritorio/ProyectoFinalMaz/PROYECTOMAZMORRA/ProyectoMaz/src/main/java/module-info.java'
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\allclasses-index.html = 1747226133511
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\allpackages-index.html = 1747226133514
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\constant-values.html = 1747226133412
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\element-list = 1747226133363
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\help-doc.html = 1747226133564
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\index-all.html = 1747226133544
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\index.html = 1747226133555
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\member-search-index.js = 1747226133521
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\module-search-index.js = 1747226133516
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\overview-tree.html = 1747226133492
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\package-search-index.js = 1747226133518
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\search.html = 1747226133552
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\tag-search-index.js = 1747226133524
+C:\Users\pozor\OneDrive\Escritorio\ProyectoFinalMaz\PROYECTOMAZMORRA\ProyectoMaz\target\site\apidocs\type-search-index.js = 1747226133519

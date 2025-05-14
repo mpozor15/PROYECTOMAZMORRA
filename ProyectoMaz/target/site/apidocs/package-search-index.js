@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.ignaciomanuel","l":"com.ignaciomanuel.mazmorra"},{"m":"com.ignaciomanuel","l":"com.ignaciomanuel.mazmorra.logica"}];updateSearchResults();
