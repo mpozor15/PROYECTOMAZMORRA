@@ -55,6 +55,9 @@ public class CargadorMapa {
                         case 'M':
                             celda = new Celda(mapa, x, y, TipoCelda.SALIDA);
                             break;
+                        case 'T':
+                            celda = new Celda(mapa, x, y, TipoCelda.TRAMPA);
+                            break;
                         default:
                             celda = new Celda(mapa, x, y, TipoCelda.SUELO);
                             break;

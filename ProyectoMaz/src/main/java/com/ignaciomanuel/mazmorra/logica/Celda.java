@@ -49,7 +49,10 @@ public class Celda {
                          Principal.TAMANO_CELDA,
                         Principal.TAMANO_CELDA);
                     }
-                break;
+                    break;
+                case TRAMPA:
+                    gc.drawImage(RecursosGraficos.imagenTrampa, x * Principal.TAMANO_CELDA, y * Principal.TAMANO_CELDA, Principal.TAMANO_CELDA, Principal.TAMANO_CELDA);
+                    break;
 
             }
 

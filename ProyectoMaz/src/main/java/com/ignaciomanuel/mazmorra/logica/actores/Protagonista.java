@@ -67,6 +67,25 @@ public class Protagonista extends Actor {
         Celda destino = celda.getMapa().getCelda(nx, ny);
         if (destino == null) return;
 
+        // Si pisa la trampa
+        if (destino.getTipo() == TipoCelda.TRAMPA) {
+            int daño = 20;
+            this.salud -= daño;
+            if (this.salud < 0) this.salud = 0;{
+                Principal.registrarEvento("Oh no has pisado una trampa que te ha causado "+ daño + " de daño.");
+            }
+            if (getSalud() <= 0) {
+                Principal.registrarEvento("Has Muerto");
+                Platform.runLater(() -> {
+                    Alert alerta = new Alert(AlertType.INFORMATION);
+                    alerta.setTitle("Derrota");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Oh no una Trampa te ha matado");
+                    alerta.showAndWait();
+                    Platform.exit();
+                });
+            }
+        }
         // Si pisa la salida
         if (destino.getTipo() == TipoCelda.SALIDA) {
             boolean quedan = Principal.getActores().stream()

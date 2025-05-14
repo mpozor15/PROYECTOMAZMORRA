@@ -8,6 +8,7 @@ public class RecursosGraficos {
     public static Image imagenProtagonista;
     public static Image imagenEnemigo;
     public static Image imagenMeta;
+    public static Image imagenTrampa;
 
     public static void cargarImagenes() {
         imagenPared = new Image("/pared.png");
@@ -15,5 +16,6 @@ public class RecursosGraficos {
         imagenProtagonista = new Image("/protagonista.png");
         imagenEnemigo = new Image("/enemigo.png");
         imagenMeta = new Image("/meta.png");
+        imagenTrampa = new Image("/Trampa.png");
     }
 }
