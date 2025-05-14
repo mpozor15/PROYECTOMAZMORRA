@@ -19,7 +19,7 @@
                 focusTraversable="true"/>
     </center>
 
-    <!-- Panel derecho -->
+    <!-- Panel derecho fijo -->
     <right>
         <VBox spacing="20">
             <padding>
@@ -47,6 +47,7 @@
         </VBox>
     </right>
 
+    <!-- Área de eventos -->
     <bottom>
         <TextArea fx:id="areaEventos"
                   prefRowCount="4"
@@ -54,6 +55,7 @@
                   wrapText="true"/>
     </bottom>
 
+    <!-- Margen exterior -->
     <padding>
         <Insets top="0" right="10" bottom="10" left="10"/>
     </padding>
