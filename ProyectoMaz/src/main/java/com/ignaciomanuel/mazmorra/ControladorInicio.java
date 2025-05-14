@@ -1,4 +1,4 @@
-package com.ignaciomanuel.mazmorra.logica.actores;
+package com.ignaciomanuel.mazmorra;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

@@ -2,9 +2,9 @@ package com.ignaciomanuel.mazmorra;
 
 import java.util.List;
 
-import com.ignaciomanuel.*;.mazmorra.logica.actores.Actor;
-import com.ignaciomanuel.*;.mazmorra.logica.actores.Enemigo;
-import com.ignaciomanuel.*;.mazmorra.logica.actores.Protagonista;
+import com.ignaciomanuel.mazmorra.logica.actores.Actor;
+import com.ignaciomanuel.mazmorra.logica.actores.Enemigo;
+import com.ignaciomanuel.mazmorra.logica.actores.Protagonista;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
